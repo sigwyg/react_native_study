@@ -2,14 +2,10 @@ import React, {Component} from 'react';
 import {
     StatusBar,
     StyleSheet,
-    Text,
-    View
 } from 'react-native';
-import {
-    Button,
-    Header,
-    Slider,
-} from 'react-native-elements'
+import { Container, Text } from 'native-base';
+import * as Font from 'expo-font'
+import { Ionicons } from '@expo/vector-icons';
 
 export default class extends Component {
     constructor(props) {
@@ -32,31 +28,13 @@ export default class extends Component {
     render() {
         const isShow = this.state.isShow
         return (
-            <View style={styles.body}>
-                <StatusBar barStyle="light-content" hidden={ false } />
-                <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
-                    />
-                <View style={styles.contents}>
-                    <Text style={isShow ? styles.blueText : styles.hideText}>Hello {this.props.name}</Text>
-                    <Text onPress={this._onPressButton}>clicked</Text>
-                </View>
+            <Container style={styles.body}>
+                <Text style={isShow ? styles.blueText : styles.hideText}>Hello {this.props.name}</Text>
+                <Text onPress={this._onPressButton}>clicked</Text>
 
-                <View style={styles.contents}>
-                    <Text>{ this.getApple() }</Text>
-                    <Slider
-                        value={this.state.value}
-                        step={0.5}
-                        minimumValue={0}
-                        maximumValue={20}
-                        onValueChange={value => this.setState({value})}
-                    />
-                    <Text>Value: {this.state.value} hours</Text>
-                    <Button title="touch me!" />
-                </View>
-            </View>
+                <Text>{ this.getApple() }</Text>
+                <Text>Value: {this.state.value} hours</Text>
+            </Container>
         );
     }
 }
