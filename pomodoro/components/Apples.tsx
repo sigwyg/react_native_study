@@ -4,7 +4,8 @@ import {
     Container,
     Text,
     Button,
-    DatePicker
+    Grid,
+    Col
 } from 'native-base';
 
 export default class extends React.Component {
@@ -12,8 +13,10 @@ export default class extends React.Component {
         super(props)
         this.state = {
             isShow: false,
-            value: 3.5,
+            value: 1.5,
         }
+        this.increaseApple = this.increaseApple.bind(this)
+        this.decreaseApple = this.decreaseApple.bind(this)
     }
     _onPressButton = (e) => {
         this.setState({
@@ -25,13 +28,33 @@ export default class extends React.Component {
         const apples = Array((this.state.value / 0.5)+ 1).join(apple)
         return apples
     }
+    increaseApple() {
+        const nowValue = this.state.value + 0.5
+        this.setState({ value: nowValue })
+    }
+    decreaseApple() {
+        const nowValue = this.state.value > 0 ? this.state.value - 0.5 : 0
+        this.setState({ value: nowValue })
+    }
     render() {
         const isShow = this.state.isShow
         return (
             <Container>
-                <DatePicker
-                />
-                <Text>{ this.getApple() }</Text>
+                <Grid>
+                    <Col style={{ width: 40, marginRight: 5 }}>
+                        <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.decreaseApple}>
+                            <Text>-</Text>
+                        </Button>
+                    </Col>
+                    <Col style={{ width: 40, marginRight: 10 }}>
+                        <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.increaseApple}>
+                            <Text>+</Text>
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Text>{ this.getApple() } { this.state.value }h</Text>
+                    </Col>
+                </Grid>
                 <Text>Value: {this.state.value} hours</Text>
 
                 <Button block dark onPress={this._onPressButton}>

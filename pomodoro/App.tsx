@@ -10,7 +10,14 @@ import {
     Body,
     Left,
     Right,
-    Text
+    Text,
+    Grid,
+    Row,
+    Col,
+    Form,
+    Item,
+    Input,
+    Label
 } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,7 +28,9 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isReady: false,
+      taskList: ['title']
     };
+    this.addTask = this.addTask.bind(this)
   }
 
   async componentDidMount() {
@@ -31,6 +40,11 @@ export default class App extends React.Component {
       ...Ionicons.font,
     });
     this.setState({ isReady: true });
+  }
+
+  addTask() {
+      const newTask = 'title'
+      this.setState({ taskList: [...this.state.taskList, newTask]})
   }
 
   render() {
@@ -52,8 +66,29 @@ export default class App extends React.Component {
             </Right>
         </Header>
         <Content padder>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Apples />
+            <Grid>
+                <Row style={{ paddingBottom: 10, justifyContent: 'center' }}>
+                    <Text style={{ textAlign: 'center'}}>タスクを追加してください</Text>
+                </Row>
+                <Row style={{ paddingBottom: 10 }}>
+                    <Col>
+                        <Item inlineLabel>
+                            <Label>Task</Label>
+                            <Input />
+                        </Item>
+                    </Col>
+                    <Col style={{ width: 60}}>
+                        <Button onPress={ this.addTask }><Text>Add</Text></Button>
+                    </Col>
+                </Row>
+                <Row>
+                    {
+                        this.state.taskList.map( (data) => {
+                            return <Apples />
+                        })
+                    }
+                </Row>
+            </Grid>
         </Content>
         <Footer>
             <FooterTab>
