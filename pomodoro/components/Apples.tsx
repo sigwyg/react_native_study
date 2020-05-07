@@ -39,28 +39,21 @@ export default class extends React.Component {
     render() {
         const isShow = this.state.isShow
         return (
-            <Container>
-                <Grid>
-                    <Col style={{ width: 40, marginRight: 5 }}>
-                        <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.decreaseApple}>
-                            <Text>-</Text>
-                        </Button>
-                    </Col>
-                    <Col style={{ width: 40, marginRight: 10 }}>
-                        <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.increaseApple}>
-                            <Text>+</Text>
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Text>{ this.getApple() } { this.state.value }h</Text>
-                    </Col>
-                </Grid>
-                <Text>Value: {this.state.value} hours</Text>
-
-                <Button block dark onPress={this._onPressButton}>
-                    <Text>clicked</Text>
-                </Button>
-            </Container>
+            <Grid>
+                <Col style={{ width: 40, marginRight: 5 }}>
+                    <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.decreaseApple}>
+                        <Text>-</Text>
+                    </Button>
+                </Col>
+                <Col style={{ width: 40, marginRight: 10 }}>
+                    <Button small bordered style={{alignSelf: 'flex-start'}} onPress={this.increaseApple}>
+                        <Text>+</Text>
+                    </Button>
+                </Col>
+                <Col>
+                    <Text>{ this.getApple() } { this.state.value }h</Text>
+                </Col>
+            </Grid>
         );
     }
 }

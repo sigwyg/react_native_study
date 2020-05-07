@@ -17,7 +17,9 @@ import {
     Form,
     Item,
     Input,
-    Label
+    Label,
+    Card,
+    CardItem
 } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -81,14 +83,23 @@ export default class App extends React.Component {
                         <Button onPress={ this.addTask }><Text>Add</Text></Button>
                     </Col>
                 </Row>
-                <Row>
-                    {
-                        this.state.taskList.map( (data) => {
-                            return <Apples />
-                        })
-                    }
-                </Row>
             </Grid>
+            {
+                this.state.taskList.map( (data, idx) => {
+                    return (
+                        <Card key={idx}>
+                            <CardItem bordered>
+                                <Text>{data}</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    <Apples />
+                                </Body>
+                            </CardItem>
+                        </Card>
+                    )
+                })
+            }
         </Content>
         <Footer>
             <FooterTab>
