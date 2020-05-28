@@ -12,16 +12,10 @@ export default class extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            isShow: false,
             value: 1.5,
         }
         this.increaseApple = this.increaseApple.bind(this)
         this.decreaseApple = this.decreaseApple.bind(this)
-    }
-    _onPressButton = (e) => {
-        this.setState({
-            isShow: !this.state.isShow
-        })
     }
     getApple() {
         const apple = '🍎'
@@ -37,7 +31,6 @@ export default class extends React.Component {
         this.setState({ value: nowValue })
     }
     render() {
-        const isShow = this.state.isShow
         return (
             <Grid>
                 <Col style={{ width: 40, marginRight: 5 }}>

@@ -30,9 +30,11 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isReady: false,
-      taskList: ['title']
+      title: '',
+      tasks: []
     };
     this.addTask = this.addTask.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   async componentDidMount() {
@@ -44,9 +46,14 @@ export default class App extends React.Component {
     this.setState({ isReady: true });
   }
 
+  handleChange(e) {
+    //this.setState({ [e.target.name]: e.target.value });
+    this.setState({ title: e.target.value });
+  }
+
   addTask() {
-      const newTask = 'title'
-      this.setState({ taskList: [...this.state.taskList, newTask]})
+      const newTask = this.state.title
+      this.setState({ tasks: [...this.state.tasks, newTask]})
   }
 
   render() {
@@ -76,16 +83,14 @@ export default class App extends React.Component {
                     <Col>
                         <Item inlineLabel>
                             <Label>Task</Label>
-                            <Input />
+                            <Input name="title" value={this.state.title} onChange={this.handleChange} placeholder="タスク名を入力" />
+                            <Button onPress={ this.addTask }><Text>Add</Text></Button>
                         </Item>
-                    </Col>
-                    <Col style={{ width: 60}}>
-                        <Button onPress={ this.addTask }><Text>Add</Text></Button>
                     </Col>
                 </Row>
             </Grid>
             {
-                this.state.taskList.map( (data, idx) => {
+                this.state.tasks.map( (data, idx) => {
                     return (
                         <Card key={idx}>
                             <CardItem bordered>
