@@ -33,8 +33,8 @@ export default class App extends React.Component {
       title: '',
       tasks: []
     };
-    this.addTask = this.addTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.addTask = this.addTask.bind(this)
   }
 
   async componentDidMount() {
@@ -47,13 +47,14 @@ export default class App extends React.Component {
   }
 
   handleChange(e) {
-    //this.setState({ [e.target.name]: e.target.value });
-    this.setState({ title: e.target.value });
+    const title = e.target.value || e.nativeEvent.text
+
+    this.setState({ title: title });
   }
 
   addTask() {
-      const newTask = this.state.title
-      this.setState({ tasks: [...this.state.tasks, newTask]})
+    const newTask = this.state.title
+    this.setState({ tasks: [...this.state.tasks, newTask]})
   }
 
   render() {
@@ -83,7 +84,7 @@ export default class App extends React.Component {
                     <Col>
                         <Item inlineLabel>
                             <Label>Task</Label>
-                            <Input name="title" value={this.state.title} onChange={this.handleChange} placeholder="タスク名を入力" />
+                            <Input value={this.state.title} onChange={this.handleChange} placeholder="タスク名を入力" />
                             <Button onPress={ this.addTask }><Text>Add</Text></Button>
                         </Item>
                     </Col>
