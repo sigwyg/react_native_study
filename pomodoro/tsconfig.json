@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true, // *.d.tsの型チェックをスキップ: 速度優先
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true, // default exportなしでのdefault importを許可
+    "esModuleInterop": true, // default exportなしでもdefault importを可能にする
+    "module": "esnext", // モジュールの形式: import/export。commonjsだとTree Shakingが効かない
+    "resolveJsonModule": true, //JSONのインポートを可能にする
+    "moduleResolution": "node", // resolveJsonModulenに必要
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strict": true
-  }
+    "lib": ["DOM", "ES2017"],
+    "noEmit": true,  // 出力を行わない
+    "strict": true,
+    "forceConsistentCasingInFileNames": true //同じファイルへの一貫性のない参照を禁止
+  },
+  "exclude": ["node_modules"]
 }
