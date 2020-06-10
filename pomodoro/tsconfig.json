@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "skipLibCheck": true, // *.d.tsの型チェックをスキップ: 速度優先
     "allowJs": true,
     "allowSyntheticDefaultImports": true, // default exportなしでのdefault importを許可
     "esModuleInterop": true, // default exportなしでもdefault importを可能にする
@@ -8,10 +7,17 @@
     "resolveJsonModule": true, //JSONのインポートを可能にする
     "moduleResolution": "node", // resolveJsonModulenに必要
     "jsx": "react-native",
-    "lib": ["DOM", "ES2017"],
-    "noEmit": true,  // 出力を行わない
+    "lib": ["esnext"],
+    "target": "esnext",
+    "noEmit": true,  // 出力を行わない: Babelに任せる
     "strict": true,
     "forceConsistentCasingInFileNames": true //同じファイルへの一貫性のない参照を禁止
+    "skipLibCheck": true, // *.d.tsの型チェックをスキップ: 速度優先
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
