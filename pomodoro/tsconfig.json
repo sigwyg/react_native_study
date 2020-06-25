@@ -11,11 +11,12 @@
     "target": "esnext",
     "noEmit": true,  // 出力を行わない: Babelに任せる
     "strict": true,
-    "forceConsistentCasingInFileNames": true //同じファイルへの一貫性のない参照を禁止
-    "skipLibCheck": true, // *.d.tsの型チェックをスキップ: 速度優先
+    "forceConsistentCasingInFileNames": true, //同じファイルへの一貫性のない参照を禁止
+    "skipLibCheck": true // *.d.tsの型チェックをスキップ: 速度優先
   },
   "exclude": [
     "node_modules",
+    "tsconfig.json",
     "babel.config.js",
     "metro.config.js",
     "jest.config.js"
