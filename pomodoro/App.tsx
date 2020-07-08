@@ -24,6 +24,7 @@ import {
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
+import Apples from './components/Apples'
 
 interface Props {}
 
@@ -56,10 +57,6 @@ export default class App extends React.Component<Props, State> {
 
   handleChange(e: NativeSyntheticEvent<TextInputChangeEventData>) {
     let title = e.nativeEvent.text
-    if (e.target) {
-      // ToDo: Web側のTypeは妥協（混ぜるとエラーになる）
-      title = (e.target as any).value
-    }
 
     this.setState({ title: title })
   }
@@ -117,7 +114,7 @@ export default class App extends React.Component<Props, State> {
                   <Text>{data}</Text>
                 </CardItem>
                 <CardItem>
-                  <Body></Body>
+                  <Body><Apples /></Body>
                 </CardItem>
               </Card>
             )
