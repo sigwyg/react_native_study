@@ -6,8 +6,8 @@
     "module": "esnext", // モジュールの形式: import/export。commonjsだとTree Shakingが効かない
     "resolveJsonModule": true, //JSONのインポートを可能にする
     "moduleResolution": "node", // resolveJsonModulenに必要
-    "jsx": "react",
-    "lib": ["esnext"],
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
     "types": ["react", "react-native"],
     "target": "esnext",
     "noEmit": true,  // 出力を行わない: Babelに任せる
