@@ -21,6 +21,7 @@ import {
   Card,
   CardItem,
 } from 'native-base'
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -53,10 +54,8 @@ export default class App extends React.Component<Props, State> {
     this.setState({ isReady: true })
   }
 
-  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const title =
-      (e.currentTarget as HTMLInputElement & { value: string }).value ||
-      (e.nativeEvent as Event & { text: string }).text
+  handleChange(e: NativeSyntheticEvent<TextInputChangeEventData>) {
+    const title: string = e.nativeEvent.text
 
     this.setState({ title: title })
   }
