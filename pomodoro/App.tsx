@@ -23,7 +23,6 @@ import {
 } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import Apples from './components/Apples'
 
 interface Props {}
 
@@ -54,10 +53,10 @@ export default class App extends React.Component<Props, State> {
     this.setState({ isReady: true })
   }
 
-  handleChange(
-    e: NativeSyntheticEvent<TextInputChangeEventData> | React.ChangeEvent
-  ) {
-    const title = e.target.value || e.nativeEvent.text
+  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const title =
+      (e.currentTarget as HTMLInputElement & { value: string }).value ||
+      (e.nativeEvent as Event & { text: string }).text
 
     this.setState({ title: title })
   }
@@ -115,9 +114,7 @@ export default class App extends React.Component<Props, State> {
                   <Text>{data}</Text>
                 </CardItem>
                 <CardItem>
-                  <Body>
-                    <Apples />
-                  </Body>
+                  <Body></Body>
                 </CardItem>
               </Card>
             )

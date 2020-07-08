@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "type": "tsc",
+    "type": "tsc -p .",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -22,16 +22,18 @@
     "@babel/core": "^7.8.6",
     "@types/jest": "^26.0.0",
     "@types/react": "~16.9.23",
-    "@types/react-native": "~0.61.17",
+    "@types/react-native": "^0.62.17",
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "~8.1.0",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.6"
   },
   "private": true
 }
