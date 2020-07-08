@@ -55,7 +55,11 @@ export default class App extends React.Component<Props, State> {
   }
 
   handleChange(e: NativeSyntheticEvent<TextInputChangeEventData>) {
-    const title: string = e.nativeEvent.text
+    let title = e.nativeEvent.text
+    if (e.target) {
+      // ToDo: Web側のTypeは妥協（混ぜるとエラーになる）
+      title = (e.target as any).value
+    }
 
     this.setState({ title: title })
   }
