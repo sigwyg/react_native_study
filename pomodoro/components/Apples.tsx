@@ -2,7 +2,9 @@ import React from 'react'
 import { AppLoading } from 'expo'
 import { Container, Text, Button, Grid, Col } from 'native-base'
 
-interface Props {}
+interface Props {
+  type?: 'regular' | 'irregular'
+}
 interface State {
   value: number
 }
@@ -17,7 +19,7 @@ export default class extends React.Component<Props, State> {
     this.decreaseApple = this.decreaseApple.bind(this)
   }
   getApple() {
-    const apple = '🍎'
+    const apple = this.props.type === 'irregular' ? '🍏' : '🍎'
     const apples = Array(this.state.value / 0.5 + 1).join(apple)
     return apples
   }

@@ -26,12 +26,17 @@ import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import Apples from './components/Apples'
 
+type taskType = 'regular' | 'irregular'
+
 interface Props {}
 
 interface State {
   isReady: boolean
   title: string
-  tasks: Array<string>
+  tasks: Array<{
+    title: string
+    type: taskType
+  }>
 }
 
 export default class App extends React.Component<Props, State> {
@@ -43,7 +48,6 @@ export default class App extends React.Component<Props, State> {
       tasks: [],
     }
     this.handleChange = this.handleChange.bind(this)
-    this.addTask = this.addTask.bind(this)
   }
 
   async componentDidMount() {
@@ -61,8 +65,11 @@ export default class App extends React.Component<Props, State> {
     this.setState({ title: title })
   }
 
-  addTask() {
-    const newTask = this.state.title
+  addTask(type: taskType) {
+    const newTask = {
+      title: this.state.title,
+      type,
+    }
     this.setState({ tasks: [...this.state.tasks, newTask] })
   }
 
@@ -100,8 +107,14 @@ export default class App extends React.Component<Props, State> {
                     onChange={this.handleChange}
                     placeholder="タスク名を入力"
                   />
-                  <Button onPress={this.addTask}>
-                    <Text>Add</Text>
+                  <Button
+                    onPress={() => this.addTask('irregular')}
+                    style={{ marginRight: 5 }}
+                  >
+                    <Text>🍏+</Text>
+                  </Button>
+                  <Button onPress={() => this.addTask('regular')}>
+                    <Text>🍎+</Text>
                   </Button>
                 </Item>
               </Col>
@@ -111,10 +124,12 @@ export default class App extends React.Component<Props, State> {
             return (
               <Card key={idx}>
                 <CardItem bordered>
-                  <Text>{data}</Text>
+                  <Text>{data.title}</Text>
                 </CardItem>
                 <CardItem>
-                  <Body><Apples /></Body>
+                  <Body>
+                    <Apples type={data.type} />
+                  </Body>
                 </CardItem>
               </Card>
             )
