@@ -24,7 +24,7 @@ import {
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import Apples from './components/Apples'
+import TaskCard from './components/TaskCard'
 
 type taskType = 'regular' | 'irregular'
 
@@ -85,7 +85,7 @@ export default class App extends React.Component<Props, State> {
             <Text>🍎</Text>
           </Left>
           <Body>
-            <Text>Header</Text>
+            <Text>Pomodoro</Text>
           </Body>
           <Right>
             <Text>🍏</Text>
@@ -101,7 +101,6 @@ export default class App extends React.Component<Props, State> {
             <Row style={{ paddingBottom: 10 }}>
               <Col>
                 <Item inlineLabel>
-                  <Label>Task</Label>
                   <Input
                     value={this.state.title}
                     onChange={this.handleChange}
@@ -121,18 +120,7 @@ export default class App extends React.Component<Props, State> {
             </Row>
           </Grid>
           {this.state.tasks.map((data, idx) => {
-            return (
-              <Card key={idx}>
-                <CardItem bordered>
-                  <Text>{data.title}</Text>
-                </CardItem>
-                <CardItem>
-                  <Body>
-                    <Apples type={data.type} />
-                  </Body>
-                </CardItem>
-              </Card>
-            )
+            return <TaskCard title={data.title} type={data.type} />
           })}
         </Content>
         <Footer>
