@@ -37,6 +37,7 @@ interface State {
     title: string
     type: taskType
   }>
+  markdown: string
 }
 
 export default class App extends React.Component<Props, State> {
@@ -46,8 +47,10 @@ export default class App extends React.Component<Props, State> {
       isReady: false,
       title: '',
       tasks: [],
+      markdown: '',
     }
     this.handleChange = this.handleChange.bind(this)
+    this.showMarkdown = this.showMarkdown.bind(this)
   }
 
   async componentDidMount() {
@@ -71,6 +74,15 @@ export default class App extends React.Component<Props, State> {
       type,
     }
     this.setState({ tasks: [newTask, ...this.state.tasks] })
+  }
+
+  showMarkdown() {
+    let mdText = ''
+    this.state.tasks.forEach((task) => {
+      const apples = task.type === 'regular' ? '🍎' : '🍏'
+      mdText += `- ${apples}${task.title}\n`
+    })
+    this.setState({ markdown: mdText })
   }
 
   render() {
@@ -119,6 +131,11 @@ export default class App extends React.Component<Props, State> {
                 </Item>
               </Col>
             </Row>
+            <Row style={{ paddingBottom: 10 }}>
+              <Text style={{ backgroundColor: '#f0f0f0' }}>
+                {this.state.markdown}
+              </Text>
+            </Row>
           </Grid>
           {this.state.tasks.map((data, idx) => {
             return <TaskCard title={data.title} type={data.type} />
@@ -133,11 +150,8 @@ export default class App extends React.Component<Props, State> {
             <Button>
               <Text>Projects</Text>
             </Button>
-            <Button>
-              <Text>Lists</Text>
-            </Button>
-            <Button>
-              <Text>Settings</Text>
+            <Button onPress={this.showMarkdown}>
+              <Text>Convert `.md`</Text>
             </Button>
           </FooterTab>
         </Footer>
