@@ -70,7 +70,7 @@ export default class App extends React.Component<Props, State> {
       title: this.state.title,
       type,
     }
-    this.setState({ tasks: [...this.state.tasks, newTask] })
+    this.setState({ tasks: [newTask, ...this.state.tasks] })
   }
 
   render() {
@@ -91,6 +91,7 @@ export default class App extends React.Component<Props, State> {
             <Text>🍏</Text>
           </Right>
         </Header>
+
         <Content padder>
           <Grid>
             <Row style={{ paddingBottom: 10, justifyContent: 'center' }}>
@@ -123,6 +124,7 @@ export default class App extends React.Component<Props, State> {
             return <TaskCard title={data.title} type={data.type} />
           })}
         </Content>
+
         <Footer>
           <FooterTab>
             <Button>
